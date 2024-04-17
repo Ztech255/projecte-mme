@@ -1,5 +1,6 @@
 import React from "react";
 import "./LoginForm.css";
+import { FaUser, FaLock } from "react-icons/fa";
 
 const LoginForm = () => {
   return (
@@ -8,9 +9,11 @@ const LoginForm = () => {
         <h1>Login</h1>
         <div className="input-box">
           <input type="text" placeholder="Username" Required />
+          <FaUser />
         </div>
         <div className="input-box">
           <input type="password" placeholder="password" Required />
+          <FaLock />
         </div>
         <div ClassName="remeber-forgot">
           <label>
