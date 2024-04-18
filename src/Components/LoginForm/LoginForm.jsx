@@ -8,19 +8,16 @@ const LoginForm = () => {
       <form action="">
         <h1>Login</h1>
         <div className="input-box">
-          <input type="text" placeholder="Username" Required />
-          <FaUser />
+          <input type="text" placeholder="Username" required />
+          <FaUser className="icon"/>
         </div>
         <div className="input-box">
-          <input type="password" placeholder="password" Required />
-          <FaLock />
+          <input type="password" placeholder="password" required />
+          <FaLock className="icon"/>  
         </div>
-        <div ClassName="remeber-forgot">
-          <label>
-            <input type="checkbox" />
-            remeber me
-          </label>
-          <a href="#"> Forgot Password</a>
+        <div className="remember-forgot">
+          <label><input type="checkbox" />remember me</label>
+          <a href="#">Forgot Password</a>
         </div>
         <button type="submit">Login</button>
         <div classname="register-link">
