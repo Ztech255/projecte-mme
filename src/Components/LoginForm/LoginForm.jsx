@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./LoginForm.css";
 import { FaUser, FaLock } from "react-icons/fa";
-import { CgPassword } from "react-icons/cg";
 
 const LoginForm = () => {
-  var [setUser,user] = useState()
-    var [setPassword, password] = useState();
-  
+  var [user, setUser] = useState();
+  var [password, setPassword] = useState();
+
+  const [loginSuccess, setLoginSuccess] = useState(false);
+
   var userDb = [
     {
       user: "user",
@@ -18,32 +19,73 @@ const LoginForm = () => {
     },
   ];
 
+  const handleSubmit = () => {
+    userDb.map((u) => {
+      if (u.user === user && u.password === password) {
+        setLoginSuccess(true);
+      }
+    });
+  };
+
   return (
     <div className="wrapper">
-      <form action="">
-        <h1>Login</h1>
-        <div className="input-box">
-          <input type="text" placeholder="Username" required />
-          <FaUser className="icon" />
+      {loginSuccess ? (
+        <div>
+          Welcome, {user}!{" "}
+          <a href="#" onClick={() => setLoginSuccess(false)}>
+            Log out
+          </a>
         </div>
-        <div className="input-box">
-          <input type="password" placeholder="password" required />
-          <FaLock className="icon" />
+      ) : (
+        <div className="login-form">
+          <h1>Login</h1>
+          <div className="input-box">
+            <input
+              type="text"
+              placeholder="Username"
+              onChange={(e) => {
+                setUser(e.target.value);
+              }}
+              required
+            />
+            <FaUser className="icon" />
+          </div>
+
+          <div className="input-box">
+            <input
+              type="password"
+              placeholder="Password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+              required
+            />
+            <FaLock className="icon" />
+          </div>
+
+          <div className="remember-forgot">
+            <label>
+              <input type="checkbox" />
+              Remember me
+            </label>
+            <a href="#">Forgot password ?</a>
+          </div>
+
+          <button
+            type="submit"
+            onClick={() => {
+              handleSubmit();
+            }}
+          >
+            Login
+          </button>
+          <div className="register-link">
+            <p>
+              Don't have an account? <a href="#">Register</a>
+            </p>
+          </div>
         </div>
-        <div className="remember-forgot">
-          <label>
-            <input type="checkbox" />
-            remember me
-          </label>
-          <a href="#">Forgot Password</a>
-        </div>
-        <button type="submit">Login</button>
-        <div className="register-link">
-          <p>
-            Don't have an account? <a href="#">Register</a>
-          </p>
-        </div>
-      </form>
+      )}
     </div>
   );
 };
